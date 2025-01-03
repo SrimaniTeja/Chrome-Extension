@@ -60,3 +60,21 @@
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+
+  #bg2{
+    background-image: url("img/bgimg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  #container{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    row-gap: 20px;
+    width: 100%;
+    height: auto;
+    column-gap: 100px;
+    
+    font-size: large;
+  }
