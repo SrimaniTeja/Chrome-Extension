@@ -2,6 +2,7 @@ var a=2
 let dictionary = [];
 let len=0;
 let skipthisshit=false;
+let sendid=''
 chrome.webRequest.onBeforeRequest.addListener(tab => {
     chrome.scripting.executeScript(
         {
@@ -20,6 +21,7 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
             {
                 console.log(tab.url,tab.tabId,dictionary);
                 len=dictionary.push(tab.tabId)
+                truesafe(tab.url)
                 if(safe(tab.url)){
                     
                 }else{
@@ -45,4 +47,43 @@ function safe(url){
         return false
     }
     return true
+}
+
+
+function truesafe(sendurl){
+
+const encodedParams = new URLSearchParams();
+encodedParams.set('url', sendurl);
+
+const url = 'https://www.virustotal.com/api/v3/urls';
+const options = {
+  method: 'POST',
+  headers: {
+    accept: 'application/json',
+    'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205',
+    'content-type': 'application/x-www-form-urlencoded'
+  },
+  body: encodedParams
+};
+
+fetch(url, options)
+  .then(res => res.json())
+  .then(json =>{ 
+    sendid=json.data.id
+    console.log(sendid)
+    const url1 = 'https://www.virustotal.com/api/v3/analyses/'+sendid;
+    const options1 = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+      }
+    };
+    
+    fetch(url1, options1)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.error(err));
+  })
+  .catch(err => console.log(err));
 }
