@@ -1,3 +1,6 @@
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
 function reddenPage(url) {
 }
 var a=2
@@ -11,14 +14,33 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
         },
         () => { 
             console.log(tab.url,tab.tabId);
-            if(tab.tabId in dictionary){
-                dictionary[tab.tabId]+=tab.url
+            if(safe(tab.url)){
+                
+            }else{
+                console.log('exitttttttttttttt',tab.tabId)
+                // const executing = chrome.tabs.executeScript(tab.id, {
+                //     code: "window.stop();",
+                //     allFrames: true,
+                //     runAt: "document_start"
+                // });
+                chrome.scripting.executeScript({
+                    target: {tabId: tab.tabId},
+                    func: function() {
+                        console.log('asdfffffff',tab.url,tab.tabId)
+                        window.stop();
+                    }
+                });
             }
-            else{
-                dictionary[tab.tabId]=0;
-            }
-            console.log(dictionary)
          });
     },  {
         urls: ['<all_urls>']
 });  
+
+function safe(url){
+
+    if(url.localeCompare("https://www.youtube.com/")==0){
+        console.log('match',url)
+        return false
+    }
+    return true
+}
