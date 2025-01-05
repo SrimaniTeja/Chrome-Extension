@@ -17,18 +17,17 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
             if(safe(tab.url)){
                 
             }else{
-                console.log('exitttttttttttttt',tab.tabId)
+                console.log('exitttttttttttttt',tab.tabId,safe(tab.url))
                 // const executing = chrome.tabs.executeScript(tab.id, {
                 //     code: "window.stop();",
                 //     allFrames: true,
                 //     runAt: "document_start"
                 // });
                 chrome.scripting.executeScript({
-                    target: {tabId: tab.tabId},
-                    func: function() {
-                        console.log('asdfffffff',tab.url,tab.tabId)
-                        window.stop();
-                    }
+                    target: {tabId: tab.tabId}
+                },
+                ()=>{
+                    chrome.tabs.remove(tab.tabId)
                 });
             }
          });
