@@ -1,2 +1,13 @@
-document.getElementById("op").addEventListener("click",()=> window.open("form.html", '', 
-    'width=800,height=500'))
+
+document.getElementById("urlButton").addEventListener("click", () => {
+    document.body.innerHTML = "This is URLs";
+  });
+  
+  document.getElementById("fileButton").addEventListener("click", () => {
+    document.body.innerHTML = "This is File";
+  });
+  
+  document.getElementById("blockButton").addEventListener("click", () => {
+    document.body.innerHTML = "This is Blocked";
+  });
+  

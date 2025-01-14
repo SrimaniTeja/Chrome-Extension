@@ -12,6 +12,12 @@
     align-items: center;
 }
 /*switch*/
+.center-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+}
 .switch {
     position: relative;
     display: inline-block;
@@ -77,4 +83,22 @@
     column-gap: 100px;
     
     font-size: large;
+  }
+
+  #rib{
+    display: flex;
+    flex-direction: row;
+    background-color: #848484;
+    align-items: center;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    column-gap: 10px;
+  }
+  #urlButton, #fileButton, #blockButton{
+    display: flex;
+    background-color: transparent;
+    border: 0px transparent;
+    color: #020202;
+    
   }
