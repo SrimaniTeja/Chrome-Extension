@@ -15,10 +15,25 @@
       </label>
     </div>
     <br>
-    <div id="rib">
-      <button type="button" id="urlButton" class="url"><b>URLs</b></button>
-      <button type="button" id="fileButton" class="file"><b>FILE</b></button>
-      <button type="button" id="blockButton" class="block"><b>BLOCKED</b></button>
+    <div class="tab">
+      <button class="tablinks" data-tab="URLs">URLs</button>
+      <button class="tablinks" data-tab="File">File</button>
+      <button class="tablinks" data-tab="Blocked">Blocked</button>
+    </div>
+  
+    <div id="URLs" class="tabcontent">
+      <h3>URLs</h3>
+      <p>This section displays URLs content.</p>
+    </div>
+  
+    <div id="File" class="tabcontent">
+      <h3>File</h3>
+      <p>This section displays File content.</p>
+    </div>
+  
+    <div id="Blocked" class="tabcontent">
+      <h3>Blocked</h3>
+      <p>This section displays Blocked content.</p>
     </div>
 
   <script src="popup.js"></script>
