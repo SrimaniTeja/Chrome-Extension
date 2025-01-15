@@ -32,8 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
   tabs[0].click();
 });
 
-function myFunction(x) {
-  x.classList.toggle("change");
+// menu icon
+document.querySelector(".container").addEventListener("click", function () {
+  menu(this);
+});
+
+function menu(element) {
+  console.log("Container clicked!", element);
 }
 
 
