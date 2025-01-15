@@ -31,3 +31,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // Open the first tab by default
   tabs[0].click();
 });
+
+function myFunction(x) {
+  x.classList.toggle("change");
+}
+
+
+//popup window i.e, MORE
+document.getElementById("options").addEventListener("click", () => {
+  // Dimensions of the popup window
+  const popupWidth = 600;
+  const popupHeight = 400;
+
+  // Calculate the position for centering the popup
+  const left = (window.screen.width - popupWidth) / 2;
+  const top = (window.screen.height - popupHeight) / 2;
+
+  // Open the popup window at the calculated position
+  window.open(
+    "form.html",
+    "",
+    `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
+  );
+});

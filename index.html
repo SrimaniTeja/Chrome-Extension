@@ -6,7 +6,7 @@
   <title>SAFESURF</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body id="bd">
+<body id="main-body">
     <h1 id="h1">SAFESURF</h1>
     <div class="center-container">
       <label class="switch">
@@ -16,11 +16,18 @@
     </div>
     <br>
     <div class="tab">
+
+      <div class="container" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+
       <button class="tablinks" data-tab="URLs">URLs</button>
       <button class="tablinks" data-tab="File">File</button>
       <button class="tablinks" data-tab="Blocked">Blocked</button>
     </div>
-  
+    
     <div id="URLs" class="tabcontent">
       <h3>URLs</h3>
       <p>This section displays URLs content.</p>
@@ -34,6 +41,10 @@
     <div id="Blocked" class="tabcontent">
       <h3>Blocked</h3>
       <p>This section displays Blocked content.</p>
+    </div>
+
+    <div>
+      <h2 style="align-items: center; text-align: center;" id="options">More></h2>
     </div>
 
   <script src="popup.js"></script>
