@@ -1,29 +1,23 @@
-// Add event listeners to tab buttons
-document.addEventListener("DOMContentLoaded", () => {
+//ribbon
+  document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tablinks");
   const tabContents = document.querySelectorAll(".tabcontent");
 
-  // Function to open the corresponding tab
   function openTab(event) {
-    // Hide all tab contents
     tabContents.forEach(content => {
       content.style.display = "none";
     });
 
-    // Remove active class from all tab buttons
     tabs.forEach(tab => {
       tab.classList.remove("active");
     });
 
-    // Show the clicked tab content
     const tabName = event.target.getAttribute("data-tab");
     document.getElementById(tabName).style.display = "block";
 
-    // Add active class to the clicked button
     event.target.classList.add("active");
   }
 
-  // Add click event listeners to all tab buttons
   tabs.forEach(tab => {
     tab.addEventListener("click", openTab);
   });
@@ -33,26 +27,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // menu icon
-document.querySelector(".container").addEventListener("click", function () {
-  menu(this);
+document.getElementById("span").addEventListener("click", () => {
+  document.getElementById("mySidenav").style.width = "250px";
 });
 
-function menu(element) {
-  console.log("Container clicked!", element);
-}
+document.getElementById("closeNavBtn").addEventListener("click", () => {
+  document.getElementById("mySidenav").style.width = "0";
+});
+
+
+
+
 
 
 //popup window i.e, MORE
 document.getElementById("options").addEventListener("click", () => {
-  // Dimensions of the popup window
   const popupWidth = 600;
   const popupHeight = 400;
 
-  // Calculate the position for centering the popup
+  //position for centering the popup
   const left = (window.screen.width - popupWidth) / 2;
   const top = (window.screen.height - popupHeight) / 2;
 
-  // Open the popup window at the calculated position
   window.open(
     "form.html",
     "",
