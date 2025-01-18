@@ -42,8 +42,8 @@ document.getElementById("closeNavBtn").addEventListener("click", () => {
 
 //popup window i.e, MORE in menu-bar
 document.getElementById("options").addEventListener("click", () => {
-  const popupWidth = 600;
-  const popupHeight = 400;
+  const popupWidth = 800;
+  const popupHeight = 450;
 
   //position for centering the popup
   const left = (window.screen.width - popupWidth) / 2;
@@ -58,8 +58,8 @@ document.getElementById("options").addEventListener("click", () => {
 
 //popup window i.e, MORE in main
 document.getElementById("moreoptions").addEventListener("click", () => {
-  const popupWidth = 600;
-  const popupHeight = 400;
+  const popupWidth = 800;
+  const popupHeight = 450;
 
   //position for centering the popup
   const left = (window.screen.width - popupWidth) / 2;
