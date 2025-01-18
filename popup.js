@@ -40,8 +40,24 @@ document.getElementById("closeNavBtn").addEventListener("click", () => {
 
 
 
-//popup window i.e, MORE
+//popup window i.e, MORE in menu-bar
 document.getElementById("options").addEventListener("click", () => {
+  const popupWidth = 600;
+  const popupHeight = 400;
+
+  //position for centering the popup
+  const left = (window.screen.width - popupWidth) / 2;
+  const top = (window.screen.height - popupHeight) / 2;
+
+  window.open(
+    "form.html",
+    "",
+    `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
+  );
+});
+
+//popup window i.e, MORE in main
+document.getElementById("moreoptions").addEventListener("click", () => {
   const popupWidth = 600;
   const popupHeight = 400;
 
