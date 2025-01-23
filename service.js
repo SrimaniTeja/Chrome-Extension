@@ -1,4 +1,5 @@
 var a=2
+var smt={}
 let dictionary = [];
 let len=0;
 let skipthisshit=false;
@@ -21,7 +22,6 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
             {
                 console.log(tab.url,tab.tabId,dictionary);
                 len=dictionary.push(tab.tabId)
-                truesafe(tab.url)
                 if(safe(tab.url)){
                     
                 }else{
@@ -48,7 +48,6 @@ function safe(url){
     }
     return true
 }
-
 
 function truesafe(sendurl){
 
