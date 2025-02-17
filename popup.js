@@ -1,4 +1,4 @@
-//ribbon
+//extension ribbon
   document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tablinks");
   const tabContents = document.querySelectorAll(".tabcontent");
@@ -25,6 +25,37 @@
   // Open the first tab by default
   tabs[0].click();
 });
+
+
+//Form ribbon
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tablinks");
+  const tabContents = document.querySelectorAll(".tabcontent2");
+
+  function openTab(event) {
+    tabContents.forEach(content => {
+      content.style.display = "none";
+    });
+
+    tabs.forEach(tab => {
+      tab.classList.remove("active");
+    });
+
+    const tabName = event.target.getAttribute("data-tab");
+    document.getElementById(tabName).style.display = "block";
+
+    event.target.classList.add("active");
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", openTab);
+  });
+
+  // Open the first tab by default
+  tabs[0].click();
+});
+
+
 
 // menu icon
 document.getElementById("span").addEventListener("click", () => {

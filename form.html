@@ -3,29 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM</title>
+    <title>Safesurf</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body id="bg2">
     <div class="tab">
       <button class="tablinks" data-tab="URLs">URLs</button>
       <button class="tablinks" data-tab="File">File</button>
-      <button class="tablinks" data-tab="Blocked">Blocked</button>
+      <button class="tablinks" data-tab="White">White-list</button>
+      <button class="tablinks" data-tab="Blocked">Black-list</button>
+      <button class="tablinks" data-tab="Upload">Upload a File</button>
     </div>
     
-    <div id="URLs" class="tabcontent">
-      <h3>URLs</h3>
+    <div id="URLs" class="tabcontent2">
+      <center>
+        <h2>URLs Scanning Results</h2>
+      </center>
       <p>This section displays URLs content.</p>
     </div>
   
-    <div id="File" class="tabcontent">
-      <h3>File</h3>
+    <div id="File" class="tabcontent2">
+      <center>
+        <h2>File scan Results [downloads]</h2>
+      </center>
+      <p>This section displays File content.</p>
+    </div>
+
+    <div id="Upload" class="tabcontent2">
+      <center>
+        <h2>Scan a file manually by uploading</h2>
+        <input type="file" id="upfile" class="upload" placeholder="Upload a file">
+        <button type="button" id="files">Scan file</button>
+      </center>
       <p>This section displays File content.</p>
     </div>
   
-    <div id="Blocked" class="tabcontent">
-      <h3>Blocked</h3>
+    <div id="Blocked" class="tabcontent2">
+      <center>
+       <h2>Black-list</h2> 
+       <input type="text" id="blacklist" class="blackurl" placeholder="Enter URL">
+       <button type="button" id="Blist">Black-list</button>
+      </center>
       <p>This section displays Blocked content.</p>
+    </div>
+
+    <div id="White" class="tabcontent2">
+      <center>
+       <h2>White-listed</h2> 
+       <input type="text" id="whitelist" class="whiteurl" placeholder="Enter URL">
+       <button type="button" id="Wlist">White-list</button>
+      </center>
+      <p>This section displays white listed content.</p>
     </div>
     <br>
 
