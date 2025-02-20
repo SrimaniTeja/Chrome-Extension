@@ -1,24 +1,25 @@
 {
-    "name": "Safe-Surf",
-    "description": "Base Level Extension",
-    "version": "1.0",
-    "manifest_version": 3,
-    "permissions": [
-        "activeTab",
-        "tabs",
-        "webRequest",
-        "webNavigation",
-        "management",
-        "scripting"
-    ],"host_permissions": [
-        "<all_urls>"
-    ],
-    "action": {
-      "default_popup": "index.html"
-      , "default_icon": "./img/logo2.png"
-    },
-    "background": {
-      "service_worker": "service.js",
-      "type": "module"
-    }
+  "name": "Safe-Surf",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+      "activeTab",
+      "tabs",
+      "webRequest",
+      "webNavigation",
+      "management",
+      "scripting",
+      "downloads"
+  ],"host_permissions": [
+      "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "index.html"
+    , "default_icon": "./img/logo2.png"
+  },
+  "background": {
+    "service_worker": "service.js",
+    "type": "module"
+  }
 }
