@@ -242,3 +242,73 @@
     transition-duration: 0.7s;
     transition-timing-function: ease;
   }
+
+
+  /* whitelist input */
+  #whitelist{
+    width: 37%;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 7px;
+  }
+  #whitelist:hover{
+    width: 40%;
+    border: 2px solid rgb(3, 230, 3);
+    transition-duration: 1s;
+    transition-timing-function: ease;
+  }
+  #Wlist{
+    width: auto;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: medium;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(255, 255, 255);
+  }
+  #Wlist:hover{
+    font-size: large;
+    transition-duration: 1ms;
+    border: 2px solid rgb(0, 151, 0);
+    box-shadow: 0px 4px 15px rgb(3, 223, 39);
+    transition-timing-function: ease;
+  }
+
+  /* Black-list input */
+  #blacklist{
+    width: 37%;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 7px;
+  }
+  #blacklist:hover{
+    width: 40%;
+    border: 2px solid rgb(252, 55, 55);
+    transition-duration: 1s;
+    transition-timing-function: ease;
+  }
+  #Blist{
+    width: auto;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: medium;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(255, 255, 255);
+  }
+  #Blist:hover{
+    border: 2px solid red;
+    box-shadow: 0px 4px 15px red;
+    font-size: large;
+    transition-duration: 10ms;
+    transition-timing-function: ease;
+  }
+
+  /* input file */
+  /* #upfile{
+    width: 20%;
+    height: 30px;
+    border: 1px solid black;
+  } */
+
+
