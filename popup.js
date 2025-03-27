@@ -88,17 +88,17 @@ document.getElementById("options").addEventListener("click", () => {
 });
 
 //popup window i.e, MORE in main
-document.getElementById("moreoptions").addEventListener("click", () => {
-  const popupWidth = 800;
-  const popupHeight = 450;
+// document.getElementById("moreoptions").addEventListener("click", () => {
+//   const popupWidth = 800;
+//   const popupHeight = 450;
 
-  //position for centering the popup
-  const left = (window.screen.width - popupWidth) / 2;
-  const top = (window.screen.height - popupHeight) / 2;
+//   //position for centering the popup
+//   const left = (window.screen.width - popupWidth) / 2;
+//   const top = (window.screen.height - popupHeight) / 2;
 
-  window.open(
-    "form.html",
-    "",
-    `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
-  );
-});
+//   window.open(
+//     "form.html",
+//     "",
+//     `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
+//   );
+// });

@@ -1,0 +1,18 @@
+
+
+form.append('file', 'data:application/octet-stream;name=asdf;base64,');
+
+options.body = form;
+
+const options = {
+  method: 'POST',
+  headers: {accept: 'application/json', 'content-type': 'multipart/form-data'}
+};
+
+fetch('https://www.virustotal.com/api/v3/files', options)
+  .then(res => res.json())
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
+  const form = new FormData();
+

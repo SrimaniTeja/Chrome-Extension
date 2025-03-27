@@ -15,9 +15,34 @@ function downloadSequentially(callback) {
     }
   });
   // chrome.downloads.downloaditem
+    chrome.downloads.onCreated.addListener(function(downloadItem) {
+      console.log("New download:", downloadItem);
+  });
+  
+  chrome.downloads.onChanged.addListener(function(delta) {
+    if (delta.state && delta.state.current === "complete") {
+        console.log("Download complete!", delta);
+    }
+  });
+  
 
 }
+chrome.downloads.onCreated.addListener((downloadItem) => {
+  console.log("Download started:", downloadItem.url);
 
+  fetch(downloadItem.url)
+      .then(response => response.blob())
+      .then(blob => {
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+              const base64Data = reader.result.split(',')[1]; // Extract Base64
+              console.log("Base64 Data:", base64Data);
+              // You can store or send this data as needed
+          };
+      })
+      .catch(error => console.error("Error fetching file:", error));
+});
 
 downloadSequentially(() => console.log('done'))
 
