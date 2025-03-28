@@ -3,129 +3,156 @@ let dictionary = [];
 let len=0;
 let skipthisshit=false;
 let sendid=''
+let mime='',filename='',b64data='';
 
-let files=new Array(200)
 
-function downloadSequentially(callback) {
-  let index = 0;
-  chrome.downloads.onChanged.addListener(f=>{
-    console.log(f.filename.current,f);
-    if(f.state.current=="complete"){
-      console.log("download complete")
-    }
-  });
-  // chrome.downloads.downloaditem
-    chrome.downloads.onCreated.addListener(function(downloadItem) {
-      console.log("New download:", downloadItem);
-  });
-  
-  chrome.downloads.onChanged.addListener(function(delta) {
-    if (delta.state && delta.state.current === "complete") {
-        console.log("Download complete!", delta);
-    }
-  });
-  
 
-}
-chrome.downloads.onCreated.addListener((downloadItem) => {
-  console.log("Download started:", downloadItem.url);
+chrome.downloads.onChanged.addListener((delta) => {
+  if (delta.state && delta.state.current === "complete") {
+      chrome.downloads.search({ id: delta.id }, (results) => {
+          if (results.length > 0) {
+              const downloadedFile = results[0];
+              const filePath = "file://" + downloadedFile.filename; // Get full file path
 
-  fetch(downloadItem.url)
-      .then(response => response.blob())
-      .then(blob => {
-          const reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onloadend = () => {
-              const base64Data = reader.result.split(',')[1]; // Extract Base64
-              console.log("Base64 Data:", base64Data);
-              // You can store or send this data as needed
-          };
-      })
-      .catch(error => console.error("Error fetching file:", error));
+              fetch(filePath)
+                  .then(response => response.blob()) // Convert to Blob
+                  .then(blob => {
+                      const file = new File([blob], downloadedFile.filename.split('/').pop(), {
+                          type: blob.type,
+                          lastModified: Date.now()
+                      });
+
+                      console.log("File Object:", file);
+                      
+                      const form = new FormData();
+
+                      form.append('file', file);
+
+                      const options = {
+                        method: 'POST',
+                        headers: {
+                          accept: 'application/json',
+                          'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+                        }
+                      };
+                      options.body = form;
+
+                      fetch('https://www.virustotal.com/api/v3/files', options)
+                      .then(res => res.json())
+                      .then(json =>{ 
+                        sendid=json.data.id
+                        console.log(sendid)
+                        const url1 = 'https://www.virustotal.com/api/v3/analyses/'+sendid;
+                        const options1 = {
+                          method: 'GET',
+                          headers: {
+                            accept: 'application/json',
+                            'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+                          }
+                        };
+                        
+                        fetch(url1, options1)
+                          .then(res => res.json())
+                          .then(json => {
+                            // console.log(json)
+                            console.log(json.data.attributes.stats)  
+                          })
+                          .catch(err => console.error(err));
+                      })
+                      .then(res => console.log(res))
+                      .catch(err => console.error(err));
+                  
+                  })
+                  .catch(error => console.error("Error loading file:", error));
+          }
+      });
+  }
 });
 
-downloadSequentially(() => console.log('done'))
 
 
-// chrome.webRequest.onBeforeRequest.addListener(tab => {
-//     chrome.scripting.executeScript(
-//         {
-//             target: { tabId: tab.tabId },
-//             args: [tab.url],
-//         },
-//         () => {
-//             skipthisshit=false
-//             for(let cit=0;cit<len;cit++){
-//                 if(tab.tabId==dictionary[cit]){
-//                     skipthisshit=true
-//                     break;
-//                 }
-//             }
-//             if(skipthisshit==false)
-//             {
-//                 console.log(tab.url,tab.tabId,dictionary);
-//                 len=dictionary.push(tab.tabId)
-//                 if(safe(tab.url)){
+chrome.webRequest.onBeforeRequest.addListener(tab => {
+    chrome.scripting.executeScript(
+        {
+            target: { tabId: tab.tabId },
+            args: [tab.url],
+        },
+        () => {
+            skipthisshit=false
+            for(let cit=0;cit<len;cit++){
+                if(tab.tabId==dictionary[cit]){
+                    skipthisshit=true
+                    break;
+                }
+            }
+            if(skipthisshit==false)
+            {
+                console.log(tab.url,tab.tabId,dictionary);
+                len=dictionary.push(tab.tabId)
+                if(safe(tab.url)){
                     
-//                 }else{
-//                     console.log('exitttttttttttttt',tab.tabId)
-//                     chrome.scripting.executeScript({
-//                         target: {tabId: tab.tabId}
-//                     },
-//                     ()=>{
-//                         chrome.tabs.remove(tab.tabId)
-//                         console.log(dictionary.pop())
-//                     });
-//                 }
-//             }
-//          });
-//     },  {
-//         urls: ['<all_urls>']
-// });  
+                }else{
+                    console.log('exitttttttttttttt',tab.tabId)
+                    chrome.scripting.executeScript({
+                        target: {tabId: tab.tabId}
+                    },
+                    ()=>{
+                        chrome.tabs.remove(tab.tabId)
+                        console.log(dictionary.pop())
+                    });
+                }
+            }
+         });
+    },  {
+        urls: ['<all_urls>']
+});  
 
-// function safe(url){
+function safe(url){
+  
+  document.getElementById("url-history").innerHTML+=url+'<br>'
+  
+  if(url.localeCompare("https://www.youtube.com/")==0){
+    console.log('match',url)
+    return false
+  }
+  truesafe(url)
+    return true
+}
 
-//     if(url.localeCompare("https://www.youtube.com/")==0){
-//         console.log('match',url)
-//         return false
-//     }
-//     return true
-// }
+function truesafe(sendurl){
 
-// function truesafe(sendurl){
+const encodedParams = new URLSearchParams();
+encodedParams.set('url', sendurl);
 
-// const encodedParams = new URLSearchParams();
-// encodedParams.set('url', sendurl);
+const url = 'https://www.virustotal.com/api/v3/urls';
+const options = {
+  method: 'POST',
+  headers: {
+    accept: 'application/json',
+    'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205',
+    'content-type': 'application/x-www-form-urlencoded'
+  },
+  body: encodedParams
+};
 
-// const url = 'https://www.virustotal.com/api/v3/urls';
-// const options = {
-//   method: 'POST',
-//   headers: {
-//     accept: 'application/json',
-//     'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205',
-//     'content-type': 'application/x-www-form-urlencoded'
-//   },
-//   body: encodedParams
-// };
-
-// fetch(url, options)
-//   .then(res => res.json())
-//   .then(json =>{ 
-//     sendid=json.data.id
-//     console.log(sendid)
-//     const url1 = 'https://www.virustotal.com/api/v3/analyses/'+sendid;
-//     const options1 = {
-//       method: 'GET',
-//       headers: {
-//         accept: 'application/json',
-//         'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
-//       }
-//     };
+fetch(url, options)
+  .then(res => res.json())
+  .then(json =>{ 
+    sendid=json.data.id
+    console.log(sendid)
+    const url1 = 'https://www.virustotal.com/api/v3/analyses/'+sendid;
+    const options1 = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+      }
+    };
     
-//     fetch(url1, options1)
-//       .then(res => res.json())
-//       .then(json => console.log(json))
-//       .catch(err => console.error(err));
-//   })
-//   .catch(err => console.log(err));
-// }
+    fetch(url1, options1)
+      .then(res => res.json())
+      .then(json => console.log(json.data.attributes.stats))
+      .catch(err => console.error(err));
+  })
+  .catch(err => console.log(err));
+}
