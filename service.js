@@ -4,7 +4,7 @@ let len=0;
 let skipthisshit=false;
 let sendid=''
 let mime='',filename='',b64data='';
-
+let allurls=["hi","hiii"]
 
 
 chrome.downloads.onChanged.addListener((delta) => {
@@ -107,11 +107,13 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
         urls: ['<all_urls>']
 });  
 
+
+
 function safe(url){
   
-  document.getElementById("url-history").innerHTML+=url+'<br>'
-  
-  if(url.localeCompare("https://www.youtube.com/")==0){
+  allurls.push(url)
+
+  if(url.localeCompare("https://www.youtube.com/")==0 || url.localeCompare("https://www.virustotal.com/api/v3/urls")==0){
     console.log('match',url)
     return false
   }
@@ -156,3 +158,40 @@ fetch(url, options)
   })
   .catch(err => console.log(err));
 }
+
+
+
+function storageAvailable(type) {
+  let storage;
+  try {
+    storage = window[type];
+    const x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      e.name === "QuotaExceededError" &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage &&
+      storage.length !== 0
+    );
+  }
+}
+
+// Function to update data in chrome.storage.local
+function updateStoredData() {
+  let timestamp = new Date().toLocaleTimeString(); // Example dynamic data
+  chrome.storage.local.set({ message: allurls }, () => {
+      console.log("Data updated:", timestamp);
+  });
+}
+
+// Update data whenever the popup is opened
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "updateData") {
+      updateStoredData();
+      sendResponse({ status: "Data updated!" });
+  }
+});

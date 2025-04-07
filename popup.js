@@ -102,3 +102,15 @@ document.getElementById("options").addEventListener("click", () => {
 //     `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
 //   );
 // });
+document.addEventListener("DOMContentLoaded", () => {
+  // Request `service.js` to update data
+  chrome.runtime.sendMessage({ action: "updateData" }, (response) => {
+      console.log(response.status); // Debugging
+
+      // After updating, fetch and display the latest data
+      chrome.storage.local.get(["message"], (result) => {
+          console.log("Retrieved Data:", result); // Debugging
+          document.getElementById("displayData").textContent = result.message || "No data found!";
+      });
+  });
+});

@@ -1,3 +1,0 @@
-form.append('file', 'data:application/octet-stream;name=asdf;base64,YXNkZg==');
-
-form.append('file', 'data:image/jpeg;name=dimond.jpg;base64,UklGRjR/AQBXRUJQVlA4ICh
