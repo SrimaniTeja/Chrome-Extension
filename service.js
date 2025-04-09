@@ -4,7 +4,7 @@ let len=0;
 let skipthisshit=false;
 let sendid=''
 let mime='',filename='',b64data='';
-let allurls=["hi","hiii"]
+let allurls=[]
 
 //get white-listing and black-listing data
 chrome.storage.sync.get("black-listing", (data) => {
