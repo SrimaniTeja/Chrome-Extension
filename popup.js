@@ -108,9 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(response.status); // Debugging
 
       // After updating, fetch and display the latest data
-      chrome.storage.local.get(["message"], (result) => {
-          console.log("Retrieved Data:", result); // Debugging
-          document.getElementById("url-history").textContent = result.message || "No data found!";
+      chrome.storage.local.get(["blocked"], (result) => {
+          console.log(result)
+
+          for (let i = 0; i < result.blocked.length; i++) {
+              
+            let p = document.getElementById("blocked-content");
+            let textNode = document.createTextNode(result.blocked[i]);
+            let br = document.createElement("br");
+
+            p.appendChild(textNode);
+            p.appendChild(br);
+          }
+          
       });
   });
 });
@@ -119,3 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
 // chrome.storage.sync.set({ userPreference: "dark-mode" }, () => {
 //   console.log("Data saved and synced!");
 // });
+
+
