@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // After updating, fetch and display the latest data
       chrome.storage.local.get(["message"], (result) => {
           console.log("Retrieved Data:", result); // Debugging
-          document.getElementById("displayData").textContent = result.message || "No data found!";
+          document.getElementById("url-history").textContent = result.message || "No data found!";
       });
   });
 });
