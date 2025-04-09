@@ -114,3 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+
+// chrome.storage.sync.set({ userPreference: "dark-mode" }, () => {
+//   console.log("Data saved and synced!");
+// });

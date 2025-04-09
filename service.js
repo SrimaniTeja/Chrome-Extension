@@ -6,6 +6,15 @@ let sendid=''
 let mime='',filename='',b64data='';
 let allurls=["hi","hiii"]
 
+//get white-listing and black-listing data
+chrome.storage.sync.get("black-listing", (data) => {
+  console.log("Retrieved data:", data.userPreference);
+});
+
+chrome.storage.sync.get("white-listing", (data) => {
+  console.log("Retrieved data:", data.userPreference);
+});
+
 
 chrome.downloads.onChanged.addListener((delta) => {
   if (delta.state && delta.state.current === "complete") {
@@ -159,6 +168,12 @@ fetch(url, options)
   .catch(err => console.log(err));
 }
 
+
+
+
+// chrome.storage.sync.remove("userPreference", () => {
+//   console.log("Data removed from sync storage!");
+// });
 
 
 function storageAvailable(type) {
