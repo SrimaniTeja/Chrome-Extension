@@ -137,17 +137,15 @@
     display: none;
     margin-top: 10px;
     background-color: hsl(184, 72%, 87%);
-    padding: 20px;
-    padding-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: left;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 120px;
+    padding: 10px;
     border-radius: 5px;
     border: 1.5px solid rgb(73, 73, 74);
+    height: 120px;
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: 120px;
+    word-wrap: break-word;
   }
-
+  
   .tabcontent2 {
     display: none;
     margin-top: 10px;
@@ -162,6 +160,16 @@
     border-radius: 5px;
     border: 1.5px solid rgb(73, 73, 74);
   }
+
+  /* scroll function*/
+  #displaydata, #filescan-result, #blocked-result {
+    max-height: 80px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px;
+    word-break: break-word;
+  }
+  
 
 /* menu-bar */
   .sidenav {
