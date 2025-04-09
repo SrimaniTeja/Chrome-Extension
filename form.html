@@ -6,6 +6,18 @@
     <title>Safesurf</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+  .container {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr; /* Two equal columns */
+      min-height: 50vh;
+  }
+  .column {
+      padding: 20px;
+      border: 1px solid #000;
+  }
+</style>
+
 <body id="bg2">
     <div class="tab">
       <button class="tablinks" data-tab="URLs">URLs</button>
@@ -19,7 +31,25 @@
       <center>
         <h2>URLs Scanning Results</h2>
       </center>
-      <p>This section displays URLs content.</p>
+      
+      <div class="container">
+
+        <div class="column left">
+          <p><b>URLS</b></p>
+          <p id="url-history"></p>
+        </div>
+
+        <div class="column right">
+          <p><b>malicious </b></p>
+          <p id="url-data1"></p>
+        </div>
+        
+        <div class="column right2">
+          <p><b>suspicious</b></p>
+          <p id="url-data2"></p>
+        </div>
+
+      </div>
     </div>
   
     <div id="File" class="tabcontent2">
@@ -52,12 +82,13 @@
        <h2>White-list</h2> 
        <input type="text" id="whitelist" class="whiteurl" placeholder="Enter URL">
        <button type="button" id="Wlist">White-list</button>
+       
       </center>
       <p>This section displays white listed content.</p>
     </div>
     <br>
     
 
-    <script src="popup.js"></script>
+    <script src="form.js"></script>
 </body>
 </html>
