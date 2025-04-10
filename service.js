@@ -128,11 +128,14 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
 
 
 function safe(url){
+  console.log(whitelist)
   if (url.startsWith("chrome-extension:")||url.startsWith("https://www.virustotal.com/api/v3/urls") ||whitelist.includes(url)){
-    return true
+    console.log("white",whitelist)
+    return true;
   }
+  console.log(url,blacklist)
   if(blacklist.includes(url)){
-    console.log('match',url)
+    console.log(url,blacklist)
     return false
   }
   truesafe(url)

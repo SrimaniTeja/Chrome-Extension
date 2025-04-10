@@ -1,3 +1,7 @@
+let mode=document.getElementById('mode').defaultChecked;
+
+
+
 //extension ribbon
   document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tablinks");
@@ -131,3 +135,29 @@ document.addEventListener("DOMContentLoaded", () => {
 // });
 
 
+
+
+
+const checkbox = document.getElementById('mode')
+
+checkbox.addEventListener('change', (event) => {
+  if (event.currentTarget.checked) {
+    mode=true;
+  } else {
+    mode=false;
+  }
+  chrome.storage.local.set({ key: mode }, () => {
+    console.log("mode:",mode);
+  });
+})
+
+chrome.storage.local.get(["key"], (result) => {
+  if (chrome.runtime.lastError) {
+      console.error("Error retrieving data:", chrome.runtime.lastError);
+  } else {
+      console.log(mode)
+      mode=result.key
+      console.log(mode,result.key)
+      document.getElementById("mode").checked = mode;
+  }
+});
