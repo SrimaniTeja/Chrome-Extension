@@ -1,0 +1,15 @@
+REFERENCES
+ 1. VirusTotal (2004). A multi-engine scanning platform for detecting malware.
+•	Aggregates antivirus scans and threat intelligence from multiple vendors to analyze URLs and files for potential malware and malicious activities.
+2. Virustotal File Scanning (2004). Cloud-based malware scanning for downloads.
+•	Provides a centralized file scanning service that allows users to check downloaded files against multiple antivirus engines before execution.
+3. PhishTank (2006). A community-driven phishing database.
+•	Maintains a publicly accessible list of reported phishing websites, helping users and security tools detect fraudulent web pages.
+4. Avast Online Security (2012). Browser extension for real-time URL threat detection.
+•	A security extension that warns users about potentially unsafe websites by leveraging blacklists and heuristic analysis.
+5. Malwarebytes Browser Guard (2019). Enhancing browser security against malicious content.
+•	A browser extension designed to block malware, trackers, and phishing websites, but lacks file analysis features.
+6. Lippmann, R., et al. (2021). Layered security approaches for web-based threats.
+•	Discusses multi-layered security strategies that combine URL scanning, sandboxing, and network monitoring for robust web protection.
+7. Z. Chen, et al. (2022). A real-time threat detection framework for browsers. IEEE Transactions on Cybersecurity.
+•	Proposes a framework that integrates network traffic monitoring with browser security to detect malicious activities in real time.
