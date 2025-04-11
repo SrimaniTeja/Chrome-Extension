@@ -116,8 +116,11 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
                         target: {tabId: tab.tabId}
                     },
                     ()=>{
+                      setTimeout(() => {
                         chrome.tabs.remove(tab.tabId)
                         console.log(dictionary.pop())
+                      }, 1000);
+                    
                     });
                 }
             }
