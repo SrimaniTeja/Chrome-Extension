@@ -1,8 +1,8 @@
-var a=2
+var a=2;
 let dictionary = [];
 let len=0;
 let skipthisshit=false;
-let sendid=''
+let sendid='';
 let mime='',filename='',b64data='';
 let allurls=[]
 let safetydata=[]
@@ -52,7 +52,7 @@ chrome.downloads.onChanged.addListener((delta) => {
                         method: 'POST',
                         headers: {
                           accept: 'application/json',
-                          'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+                          'x-apikey': 'c678e0e55ed236fd5c4ce6751bdd25c05ec946daa71e04b9faa25aa969ca290c'
                         }
                       };
                       options.body = form;
@@ -66,7 +66,7 @@ chrome.downloads.onChanged.addListener((delta) => {
                           method: 'GET',
                           headers: {
                             accept: 'application/json',
-                            'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+                            'x-apikey': 'c678e0e55ed236fd5c4ce6751bdd25c05ec946daa71e04b9faa25aa969ca290c'
                           }
                         };
                         
@@ -131,15 +131,16 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
 
 
 function safe(url){
-  console.log(whitelist)
-  if (url.startsWith("chrome-extension:")||url.startsWith("https://www.virustotal.com/api/v3/urls") ||whitelist.includes(url)){
-    console.log("white",whitelist)
-    return true;
-  }
+  
   console.log(url,blacklist)
   if(blacklist.includes(url)){
     console.log(url,blacklist)
     return false
+  }
+  console.log(whitelist)
+  if (url.startsWith("chrome-extension:")||url.startsWith("https://www.virustotal.com/api/v3/urls") ||whitelist.includes(url)){
+    console.log("white",whitelist)
+    return true;
   }
   truesafe(url)
   return true
@@ -157,7 +158,7 @@ function truesafe(sendurl){
     method: 'POST',
     headers: {
       accept: 'application/json',
-      'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205',
+      'x-apikey': 'c678e0e55ed236fd5c4ce6751bdd25c05ec946daa71e04b9faa25aa969ca290c',
       'content-type': 'application/x-www-form-urlencoded'
     },
     body: encodedParams
@@ -173,7 +174,7 @@ function truesafe(sendurl){
         method: 'GET',
         headers: {
           accept: 'application/json',
-          'x-apikey': '38f63e942fdc9f5027407d6b08351e43ac7e11e27f432c1fb76b08ca4977b205'
+          'x-apikey': 'c678e0e55ed236fd5c4ce6751bdd25c05ec946daa71e04b9faa25aa969ca290c'
         }
       };
       
