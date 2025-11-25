@@ -91,6 +91,8 @@ chrome.downloads.onChanged.addListener((delta) => {
 
 
 chrome.webRequest.onBeforeRequest.addListener(tab => {
+  if (tab.type !== "main_frame") return;
+  console.log("-----------------------------------------------------", tab.url);
     chrome.scripting.executeScript(
         {
             target: { tabId: tab.tabId },
@@ -98,12 +100,6 @@ chrome.webRequest.onBeforeRequest.addListener(tab => {
         },
         () => {
             skipthisshit=false
-            for(let cit=0;cit<len;cit++){
-                if(tab.tabId==dictionary[cit]){
-                    skipthisshit=true
-                    break;
-                }
-            }
             if(skipthisshit==false)
             {
                 console.log(tab.url,tab.tabId,dictionary);
